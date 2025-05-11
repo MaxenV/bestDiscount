@@ -9,7 +9,7 @@ import com.example.interfaces.JsonFileReader;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class Orders implements JsonFileReader {
+public class Orders implements JsonFileReader<Order> {
     private List<Order> orders;
 
     public Orders(String filePath) {
@@ -30,6 +30,7 @@ public class Orders implements JsonFileReader {
         this.orders = orders;
     }
 
+    @Override
     public List<Order> jsonRead(String path) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode orderNodes = objectMapper.readTree(new File(path));
